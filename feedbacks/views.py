@@ -5,7 +5,8 @@ from django.contrib.auth import authenticate, login as auth_login , logout as au
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import connection, transaction
-
+from django.contrib.auth.decorators import login_required 
+@login_required
 def index(request):
 		form = FeedbackForm()	
 		if request.method == 'POST':
@@ -24,11 +25,11 @@ def index(request):
 				if exist:
 					feed = Feedback.objects.create(message=feedback,user_id=request.user.id,hotel_id_id=hotelid)
 					feed.save()
-					return render(request,'feedbacks/add.html',{'form': form,'message':"Thanks sir !"})
+					return render(request,'feedbacks/add.html',{'form': form,'message':"Thanks sir !",'username':request.user})
 				else:
-					return render(request,'feedbacks/add.html',{'form': form,'message':"sorry you didn't check in before !"})
+					return render(request,'feedbacks/add.html',{'form': form,'message':"sorry you didn't check in before !",'username':request.user})
 			#else:
 				messages.error(request, "Error")			
-				return render(request,'feedbacks/add.html',{'form': "ERROR"})
+				return render(request,'feedbacks/add.html',{'form': "ERROR",'username':request.user})
 		else:		
-			return render(request,'feedbacks/add.html',{'form': form})
+			return render(request,'feedbacks/add.html',{'form': form,'username':request.user})

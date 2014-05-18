@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^users/', include('users.urls')),
     url(r'^hotels/', include('hotels.urls')),
     url(r'^reservation/', include('reservation.urls')),
-    url(r'^feedbacks/', include('feedbacks.urls'))
+    url(r'^feedbacks/', include('feedbacks.urls')),
+    url(r'^accounts/login/', include('users.urls'))
 )

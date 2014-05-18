@@ -1,4 +1,2 @@
-{% for room in form.no_of_rooms %}
-{{room}}
-{%endfor%}
 
+{{form}}

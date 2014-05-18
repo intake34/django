@@ -1,8 +1,6 @@
-<html>
-<head>
-<title>Search</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
 <form action="/users/login/" method="POST">
 
 {% csrf_token %}
@@ -10,7 +8,4 @@
 {% load staticfiles %}
 </br>
 <input type="submit">
-</form>
-</body>
-</html>
-
+{% endblock %}

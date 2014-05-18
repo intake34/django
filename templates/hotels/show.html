@@ -1,5 +1,6 @@
-<html>
-<head>
+{% extends "base.html" %}
+
+{% block content %}
 {% load staticfiles %}
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,9 +29,6 @@ max-width: 70% !important;
 
 }
 </style>
-<title>Show</title>
-</head>
-<body>
 
 
 
@@ -108,6 +106,4 @@ position: relative;">
 	</form>
 	<script>
 	</script>
-</body>
-</html>
-
+{% endblock %}

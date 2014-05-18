@@ -17,7 +17,7 @@ def register(request):
 		res.save()
 		
 		for param in params['id']:
-			if (params['no_of_rooms'][i] !=0 ):
+			if (params['no_of_rooms'][i] != "0" ):
 				n = ReservationDesc.objects.create(no_of_rooms=params['no_of_rooms'][i], room_id=param,res_id=res.id)
 				n.save()
 				i+=1

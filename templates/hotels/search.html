@@ -1,6 +1,6 @@
-<html>
-<head>
-<title>Search</title>
+{% extends "base.html" %}
+
+{% block content %}
 			{% load staticfiles %}
      <script type="text/javascript"  src="{%static "js/jquery-1.10.2.js"%}" ></script>
      <script type="text/javascript"  src="{%static "js/jquery-ui-1.10.4.js"%}" ></script>
@@ -25,6 +25,4 @@
 
 <input type="submit">
 </form>
-</body>
-</html>
-
+{% endblock %}

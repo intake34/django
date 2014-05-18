@@ -5,6 +5,7 @@ from users.forms import ContactForm , RegisterForm
 from django.contrib import messages 
 from django.contrib.auth import authenticate, login as auth_login , logout as auth_logout
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 
 def index(request):
 	if not request.user.is_authenticated():
@@ -17,9 +18,9 @@ def index(request):
 		
 		else:
 			form = ContactForm(label_suffix='')
-		return render(request,'users/index.html',{'form': form})
+		return render(request,'users/index.html',{'form': form,'username':request.user})
 	else:
-		return render(request,'users/index.html',{'form': "Wlecomeback"})
+		return render(request,'users/index.html',{'form': "Wlecomeback",'username':request.user})
 		
 		
 def login(request):
@@ -29,17 +30,17 @@ def login(request):
 	if user is not None:
 		if user.is_active:
 			auth_login(request,user) 
-			return render(request,'users/index.html',{'form': "Welcome"})    
+			return HttpResponseRedirect("/hotels/")    
 		else:
-			return render(request,'users/index.html',{'form': "disabled "})
+			return render(request,'users/index.html',{'form': "disabled ",'username':request.user})
 	else:
-		return render(request,'users/index.html',{'form': name})
-	return render(request,'users/index.html',{'form': name})
+		return render(request,'users/index.html',{'form': name,'username':request.user})
+	return render(request,'users/index.html',{'form': name,'username':request.user})
 	
 	
 def logout(request):
 	auth_logout(request)
-	return render(request,'users/index.html',{'form': "logged out"})
+	return render(request,'users/index.html',{'form': "logged out",'username':request.user})
 	
 def register(request):
 	if request.method == 'POST':
@@ -51,16 +52,16 @@ def register(request):
 				email = request.POST['e_mail']
 				try:
 					u = User.objects.get(username=name)
-					return render(request,'users/register.html',{'form': "sorry this user is already exist"})
+					return render(request,'users/register.html',{'form': "sorry this user is already exist",'username':request.user})
 				except:
 					user = User.objects.create_user(email, name , passs)
 					user.save()
-					return render(request,'users/register.html',{'form': "added successfully"})
+					return render(request,'users/register.html',{'form': "added successfully",'username':request.user})
 			else:
 				messages.error(request, "Error")	
-		
+				return render(request,'feedbacks/add.html',{'form': form,'message':" !",'username':request.user})
 	else:
 			form = RegisterForm(label_suffix='')
-	return render(request,'users/register.html',{'form': form})
+	return render(request,'users/register.html',{'form': form,'username':request.user})
 	
 		

@@ -5,7 +5,7 @@ import urlparse
 from reservation.models import Reservation , ReservationDesc
 
 def index(request):
-	return render(request,'reservation/show.html',{'form': 'hey'})    
+	return render(request,'reservation/show.html',{'form': 'hey','username':request.user})    
 def register(request):
 	if request.user.is_authenticated():
 		url = request.get_full_path()
@@ -22,7 +22,7 @@ def register(request):
 				n.save()
 				i+=1
 			
-		return render(request,'reservation/show.html',{'form': "your Reservation Completed :-)"})    
+		return render(request,'reservation/show.html',{'form': "your Reservation Completed :-)",'username':request.user})    
 	else:
-		return render(request,'reservation/show.html',{'form': "you need to sign in"})  
+		return render(request,'reservation/show.html',{'form': "you need to sign in",'username':request.user})  
 
