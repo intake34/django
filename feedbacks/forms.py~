@@ -1,0 +1,21 @@
+from django import forms
+from django.utils.safestring import mark_safe
+from django.db import connection, transaction
+
+from hotels.models import Hotel
+
+class FeedbackForm(forms.Form):
+	
+	cursor = connection.cursor()
+ 	cursor.execute("select distinct h.id,h.name"
+" from rooms_room as r,reservation_reservation as res,"
+" reservation_reservationdesc as resdesc,hotels_hotel as h ,"
+" rooms_roomtype as type"
+" where res.id = resdesc.res_id and resdesc.room_id = r.id and res.user_id=%s"
+" and type.id = r.room_type_id"
+					, [2])
+					
+	rooms = cursor.fetchall()
+	Hotel = forms.ModelChoiceField(queryset=Hotel.objects.all(),required=True,label=mark_safe("<br/>Choose Hotel<br/>"))
+	feedback = forms.CharField(required=True,label=mark_safe("<br/>FeedBack<br/>"))
+	

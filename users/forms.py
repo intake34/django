@@ -1,0 +1,13 @@
+from django import forms
+from django.utils.safestring import mark_safe
+
+class ContactForm(forms.Form):
+	
+	e_mail = forms.CharField(required=True,label=mark_safe("UserName<br/>"))
+	password = forms.CharField(widget=forms.PasswordInput,required=True,label=mark_safe('<br/>password<br/>'))
+
+class RegisterForm(forms.Form):
+	
+	e_mail = forms.CharField(required=True,label=mark_safe("Email<br/>"))
+	password = forms.CharField(widget=forms.PasswordInput,required=True,label=mark_safe('<br/>password<br/>'))
+	user = forms.CharField(required=True,label=mark_safe("<br/>UserName<br/>"))

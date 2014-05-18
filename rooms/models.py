@@ -1,0 +1,17 @@
+from django.db import models
+from hotels.models import Hotel
+class RoomType(models.Model):
+	description = models.CharField(max_length=200)
+	def __unicode__(self):
+		return self.description
+		
+class Room(models.Model):
+	information = models.CharField(max_length=200)
+	price = models.FloatField()
+	no_of_rooms = models.IntegerField()
+	max_number = models.IntegerField()
+	room_type = models.ForeignKey(RoomType)
+	hotel = models.ForeignKey(Hotel)
+	def __unicode__(self):
+		return self.information
+		

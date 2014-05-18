@@ -1,0 +1,11 @@
+from polls.models import Hotel
+from polls.models import HotelPic
+from django.contrib import City
+from django.contrib import Region
+from django.contrib import Country
+admin.site.register(Hotel)
+admin.site.register(HotelPic)
+admin.site.register(City)
+admin.site.register(Region)
+admin.site.register(Country)
+

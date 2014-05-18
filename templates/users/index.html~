@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>Search</title>
+</head>
+<body>
+<form action="/users/login/" method="POST">
+
+{% csrf_token %}
+{{form}}
+{% load staticfiles %}
+<img src="{%static "10294519_706737882699054_9178293732570855244_n.jpg"%}">
+</br>
+<input type="submit">
+</form>
+</body>
+</html>
+

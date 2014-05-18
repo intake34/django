@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Search</title>
+			{% load staticfiles %}
+     <script type="text/javascript"  src="{%static "js/jquery-1.10.2.js"%}" ></script>
+     <script type="text/javascript"  src="{%static "js/jquery-ui-1.10.4.js"%}" ></script>
+     <script type="text/javascript"  src="{%static "js/jquery-ui-1.10.4.min.js"%}" ></script>
+     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
+</head>
+<body>
+{{message}}
+</br>
+<form action="/hotels/search/" method="POST">
+{% csrf_token %}
+
+{{form}}
+</br>
+<script>
+        $(document).ready(function () {
+            $('#id_fromdate').datepicker({ dateFormat: 'yy-mm-dd' });
+            $('#id_todate').datepicker({ dateFormat: 'yy-mm-dd' });
+        });
+    </script>
+
+<input type="submit">
+</form>
+</body>
+</html>
+

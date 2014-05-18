@@ -1,0 +1,113 @@
+<html>
+<head>
+{% load staticfiles %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+	<link href="{%static "bootstrap/css/bootstrap.min.css"%}" rel="stylesheet">
+	<link href="{%static "bootstrap/css/style.css"%}" rel="stylesheet">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{%static "bootstrap/img/apple-touch-icon-144-precomposed.png"%}">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{%static "bootstrap/img/apple-touch-icon-114-precomposed.png"%}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{%static "bootstrap/img/apple-touch-icon-72-precomposed.png"%}">
+  <link rel="apple-touch-icon-precomposed" href="{%static "bootstrap/img/apple-touch-icon-57-precomposed.png"%}">
+  <link rel="shortcut icon" href="{%static "bootstrap/img/favicon.png"%}">
+  
+	<script type="text/javascript" src="{%static "bootstrap/js/jquery.min.js"%}"></script>
+	<script type="text/javascript" src="{%static "bootstrap/js/bootstrap.min.js"%}"></script>
+	<script type="text/javascript" src="{%static "bootstrap/js/scripts.js"%}"></script>
+	
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="{%static "slider/jquery.bxslider.min.js"%}"></script>
+<link href="{%static "slider/jquery.bxslider.css"%}" rel="stylesheet" />
+	
+<style>
+.bx-wrapper
+{
+max-width: 70% !important;
+
+}
+</style>
+<title>Show</title>
+</head>
+<body>
+
+
+
+<!-- 2. Add images to <div class="fotorama"></div>. -->
+<ul class="bxslider">
+  {% for p in pic%}
+ <li><img src="{%static p.picture %}"></li>
+	{%endfor%}
+</ul>
+<ul class="bxslider">
+  {% for p in feeds%}
+ <li><p>{{ p.message }}</p></li>
+	{%endfor%}
+</ul>
+
+<script>
+
+
+$(document).ready(function(){
+ 
+  $('.bxslider').bxSlider({
+  auto: true,
+  autoControls: true,
+   adaptiveHeight: true,
+   adaptiveWidth: true,
+  mode: 'fade'
+});
+});
+</script>
+<ul>
+<li> .</li>
+</ul>
+	<!--table start-->	
+	<form action="/reservation/register">
+		<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Room Type</th>
+						<th>Price</th>
+						<th>Condition</th>
+						<th>Max</th>
+						<th>No Of Rooms</th>
+						<th>Reserve</th>
+											</tr>
+				</thead>
+				<tbody>
+				{% for room in rooms %}
+
+					<tr>
+						<td>{{ room.7 }}</td>
+						<td>{{ room.2 }}</td>
+						
+						<td>{{ room.1 }}</td>
+						<td>{{ room.4 }}</td>
+						<td><input type="hidden" name="id" value="{{room.0}}"></td>
+						<td><input type="text" name="no_of_rooms" class="no_of_rooms" value="0"></td>
+						
+					
+					</tr>
+					{%endfor%}
+									<td><input type="hidden" name="fromdate" value="{{fromdate}}"></td>
+						<td><input type="hidden" name="todate" value="{{todate}}"></td>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+	<!--table end-->
+	<input type="submit" style="right: -1131;
+position: relative;">
+	</form>
+	<script>
+	</script>
+</body>
+</html>
+
